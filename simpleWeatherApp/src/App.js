@@ -40,7 +40,7 @@ const formatBackground = () =>{
 
 
   return (
-    <div className='bg-blue-600 w-full overflow-hidden'>
+    <div className='bg-sky-700 w-full overflow-hidden'>
       <div className={`${styles.paddingX} ${styles.flexCenter}`}>
       <div className={`${styles.boxWidth}`}>
         <Navbar />
@@ -48,7 +48,7 @@ const formatBackground = () =>{
       </div>
 
       <div className={`py-5 px-12 bg-gradient-to-br from-cyan-700 to-blue-700 
-     shadow-xl  ${formatBackground()}`}>
+     shadow-xl border-t-[1px] border-stone-400 ${formatBackground()}`}>
            <TopButtons setQuery={setQuery}/>
            <Inputs setQuery={setQuery} units={units} setUnits={setUnits}/>
       {weather && (
@@ -62,8 +62,7 @@ const formatBackground = () =>{
             <ToastContainer autoClose={5000} theme='colored' newestOnTop={true}/>
       </div>
 
-
-      <div className={`bg-primary ${styles.paddingX} ${styles.flexCenter}`}>
+      <div className={`bg-blue-950 ${styles.paddingX} ${styles.flexCenter}`}>
         <div className={`${styles.boxWidth}`}>
           <Footer/>
         </div>

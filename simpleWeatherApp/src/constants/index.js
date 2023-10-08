@@ -23,11 +23,11 @@ export const footerLinks = [
     links: [
       {
         name: "How it Works",
-        link: "https://www.hoobank.com/how-it-works/",
+        link: "https://www.weatherApp.com/how-it-works/",
       },
       {
         name: "Terms & Services",
-        link: "https://www.hoobank.com/terms-and-services/",
+        link: "https://www.weatherApp.com/terms-and-services/",
       },
     ],
   },
@@ -36,11 +36,9 @@ export const footerLinks = [
     links: [
       {
         name: "Help Center",
-        link: "https://www.hoobank.com/help-center/",
       },
       {
         name: "Suggestions",
-        link: "https://www.hoobank.com/suggestions/",
       },
     ],
   },
@@ -49,11 +47,9 @@ export const footerLinks = [
     links: [
       {
         name: "Phone: +251919722853",
-        link: "https://www.hoobank.com/our-partner/",
       },
       {
         name: "Email: bekifikre19@gmail.com",
-        link: "https://www.hoobank.com/become-a-partner/",
       },
     ],
   },
