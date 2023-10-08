@@ -3,13 +3,24 @@ import { DateTime } from "luxon";
 const API_KEY = '0733a9a36ed76b4d2bc109a42a04b414';
 const BASE_URL = 'https://api.openweathermap.org/data/2.5';
 
-//get weather data from API
-const getWeatherData = (infoType, searchParams) =>{
-    const url = new URL(BASE_URL + '/' + infoType);
-    url.search = new URLSearchParams({...searchParams, appid:API_KEY});
 
-    return fetch(url).then((res) => res.json())
-};
+const getWeatherData = (infoType, searchParams) => {
+    const url = new URL(BASE_URL + '/' + infoType);
+    url.search = new URLSearchParams({ ...searchParams, appid: API_KEY });
+  
+    return fetch(url)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return res.json();
+      })
+      .catch((error) => {
+        // Handle network error
+        console.error('Network error:', error);
+        throw new Error('Failed to fetch weather data. Please check your network connection.');
+      });
+  };
 
 //format current weather
 const formatCurrentWeather = (data) =>{
@@ -51,18 +62,27 @@ const formatForecastWeather = (data) =>{
     return {daily,hourly,timezone};
 }
 
-
 const getFormattedWeatherData = async (searchParams) => {
-    const formattedCurrentWeather = await getWeatherData('weather',searchParams)
-    .then(formatCurrentWeather)
+    try {
+      const formattedCurrentWeather = await getWeatherData('weather', searchParams).then(formatCurrentWeather);
+  
+      const { lat, lon } = formattedCurrentWeather;
+      const formattedForecastWeather = await getWeatherData('onecall', {
+        lat,
+        lon,
+        exclude: 'current, minutely, alerts',
+        units: searchParams.units,
+      }).then(formatForecastWeather);
+  
+      return { ...formattedCurrentWeather, ...formattedForecastWeather };
+    } catch (error) {
 
-    const {lat,lon} = formattedCurrentWeather
-    const formattedForecastWeather = await getWeatherData('onecall',{
-        lat, lon, exclude: 'current, minutely, alerts', units: searchParams.units
-    }).then(formatForecastWeather)
-
-    return {...formattedCurrentWeather, ...formattedForecastWeather};
-};
+      //Handle error, e.g., invalid city name
+      console.error('Error:', error);
+      throw new Error('Failed to fetch weather data. Please check the city name.');
+    }
+  };
+  
 
 const formatToLocalTime = (secs,zone, format = "cccc, dd LLL yyyy' | Local time: 'hh:mm a") =>
 DateTime.fromSeconds(secs).setZone(zone).toFormat(format);

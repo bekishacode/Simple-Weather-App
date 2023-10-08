@@ -9,7 +9,7 @@ const TopButtons = ({setQuery}) => {
         },
         {
             id:2,
-            title:'Sydney'
+            title:'New York'
         },
         {
             id:3,
@@ -17,7 +17,7 @@ const TopButtons = ({setQuery}) => {
         },
         {
             id:4,
-            title:'Toronto'
+            title:'Addis Ababa'
         },
         {
             id:5,
