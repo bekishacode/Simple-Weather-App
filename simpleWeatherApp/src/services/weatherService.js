@@ -63,27 +63,24 @@ const formatForecastWeather = (data) =>{
 }
 
 const getFormattedWeatherData = async (searchParams) => {
-    try {
-      const formattedCurrentWeather = await getWeatherData('weather', searchParams).then(formatCurrentWeather);
-  
-      const { lat, lon } = formattedCurrentWeather;
-      const formattedForecastWeather = await getWeatherData('onecall', {
-        lat,
-        lon,
-        exclude: 'current, minutely, alerts',
-        units: searchParams.units,
-      }).then(formatForecastWeather);
-  
-      return { ...formattedCurrentWeather, ...formattedForecastWeather };
-    } catch (error) {
+  try {
+    const formattedCurrentWeather = await getWeatherData('weather', searchParams).then(formatCurrentWeather);
 
-      //Handle error, e.g., invalid city name
-      console.error('Error:', error);
-      throw new Error('Failed to fetch weather data. Please check the city name.');
-    }
-  };
-  
+    const { lat, lon } = formattedCurrentWeather;
+    const formattedForecastWeather = await getWeatherData('onecall', {
+      lat,
+      lon,
+      exclude: 'current, minutely, alerts',
+      units: searchParams.units,
+    }).then(formatForecastWeather);
 
+    return { ...formattedCurrentWeather, ...formattedForecastWeather };
+  } catch (error) {
+    // Handle error, e.g., invalid city name
+    console.error('Error:', error);
+    throw new Error('Failed to fetch weather data. Please check the city name.');
+  }
+};
 const formatToLocalTime = (secs,zone, format = "cccc, dd LLL yyyy' | Local time: 'hh:mm a") =>
 DateTime.fromSeconds(secs).setZone(zone).toFormat(format);
 

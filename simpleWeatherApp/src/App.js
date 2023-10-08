@@ -12,21 +12,24 @@ const [query, setQuery] = useState({q: 'berlin'});
 const [units, setUnits] = useState('metric');
 const [weather, setWeather] = useState(null)
 
-useEffect(()=>{
-  const fetchWeather = async () =>{
-    const message = query.q ? query.q : 'current location'
+useEffect(() => {
+  const fetchWeather = async () => {
+    try {
+      //const message = query.q ? query.q : 'current location';
+      //toast.info('Fetching weather for ' + message);
 
-    toast.info('Fetching weather for ' + message);
-    (await getFormattedWeatherData({...query,units}).then(
-      (data) =>{
-        toast.success(`Successfully fetched weather for ${data.name}, ${data.country}.`)
-        setWeather(data);
-      }
-    )); 
-   };
-   fetchWeather();
-},[query,units]);
+      const data = await getFormattedWeatherData({ ...query, units });
+      //toast.success(`Successfully fetched weather for ${data.name}, ${data.country}.`);
+      setWeather(data);
+    } catch (error) {
+      const message = query.q ? query.q : 'current location';
+      console.error('Error:', error);
+      toast.error('Failed to fetch weather data for ' + message + ', please check the city name.');
+    }
+  };
 
+  fetchWeather();
+}, [query, units]);
 
 
 const formatBackground = () =>{
@@ -36,9 +39,6 @@ const formatBackground = () =>{
 
   return 'from-yellow-700 to-orange-700'
 }
-
-
-
   return (
     <div className='bg-sky-700 w-full overflow-hidden'>
       <div className={`${styles.paddingX} ${styles.flexCenter}`}>
