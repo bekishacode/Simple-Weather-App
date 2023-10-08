@@ -34,5 +34,4 @@ const QuickAccess = ({setQuery}) => {
     </div>
   )
 }
-
 export default QuickAccess;
