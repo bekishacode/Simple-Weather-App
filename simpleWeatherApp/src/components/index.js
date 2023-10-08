@@ -4,7 +4,7 @@ import Inputs from "./Inputs";
 import Navbar from "./Navbar";
 import TemperatureAndDetails from "./TemperatureAndDetails";
 import TimeAndLocation from "./TimeAndLocation";
-import TopButtons from "./TopButtons";
+import QuickAccess from "./QuickAccess";
 
 export{
     Footer, 
@@ -13,4 +13,4 @@ export{
     Navbar, 
     TemperatureAndDetails,
     TimeAndLocation, 
-    TopButtons};
+    QuickAccess};

@@ -9,7 +9,7 @@ const Navbar = () => {
 
   return (
     <nav className="w-full static flex py-6 justify-between items-center navbar">
-      <h1 className="text-white">Weather App</h1>
+      <h1 className="text-white text-3xl text-amber-400 font-montserrat hover:pointer ">Weather App</h1>
       <ul className="list-none sm:flex hidden justify-end items-center flex-1">
         {navLinks.map((nav, index) => (
           <li

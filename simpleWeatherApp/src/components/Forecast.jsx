@@ -3,12 +3,12 @@ import { iconUrlFromCode } from '../services/weatherService';
 
 const Forecast = ({title,items}) => {
   return (
-    <div>
+    <div className='sm:flex-row flex-col'>
         <div className='flex items-center justify-start mt-6 '>
             <p className='text-white font-montserrat uppercase'>{title}</p>
         </div>
         <hr className='my-2' />
-        <div className='flex flex-grow items-center justify-between text-white'>
+        <div className='flex flex-row items-center justify-between text-white'>
             {items.map(item =>(
                 <div className='flex flex-col items-center justify-center'>
                 <p className='font-palanquin text-sm'>{item.title}</p>

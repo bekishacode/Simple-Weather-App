@@ -1,5 +1,5 @@
 //import UilReact from '@iconscout/react-unicons/icons/uil-react'
-import {Footer, Forecast, Inputs, Navbar, TemperatureAndDetails, TimeAndLocation, TopButtons} from './components/index';
+import {Footer, Forecast, Inputs, Navbar, TemperatureAndDetails, TimeAndLocation, QuickAccess} from './components/index';
 import getFormattedWeatherData from './services/weatherService';
 import { useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
@@ -49,7 +49,7 @@ const formatBackground = () =>{
 
       <div className={`py-5 px-12 bg-gradient-to-br from-cyan-700 to-blue-700 
      shadow-xl border-t-[1px] border-stone-400 ${formatBackground()}`}>
-           <TopButtons setQuery={setQuery}/>
+           <QuickAccess setQuery={setQuery}/>
            <Inputs setQuery={setQuery} units={units} setUnits={setUnits}/>
       {weather && (
           <div>

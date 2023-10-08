@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TopButtons = ({setQuery}) => {
+const QuickAccess = ({setQuery}) => {
 
     const cities = [
         {
@@ -25,7 +25,7 @@ const TopButtons = ({setQuery}) => {
         }
     ]
   return (
-    <div className='flex items-center justify-around my-6'>
+    <div className='flex md:flex-row flex-col items-center justify-around my-6'>
         {cities.map((city) =>(
             <button key={city.id} className='text-white text-lg font-medium'
             onClick={()=> setQuery({q: city.title})}>
@@ -35,4 +35,4 @@ const TopButtons = ({setQuery}) => {
   )
 }
 
-export default TopButtons;
+export default QuickAccess;

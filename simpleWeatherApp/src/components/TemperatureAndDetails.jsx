@@ -1,14 +1,14 @@
 import React from 'react';
 import {UilTemperature, UilTear, UilWind, UilSun, UilSunset} from '@iconscout/react-unicons';
 import { formatToLocalTime, iconUrlFromCode } from '../services/weatherService';
+import styles from '../style';
 
 const TemperatureAndDetails = ({weather: {details, icon, temp, temp_min, temp_max, sunrise, 
     sunset, speed, humidity,feels_like, timezone}}) => {
   return (
-    <section id='AboutUs' className='flex justify-between items-center max-lg:flex-col gap-10 w-full max-container' >
+    <section id='AboutUs' className={ `${styles.flexCenter} ${styles.paddingY} flex justify-between items-center max-lg:flex-col gap-10 w-full max-container`}>
         
-
-        <div className='flex flex-row items-center justify-between gap-4 text-white py-3 '>
+        <div className='flex sm:flex-row flex-col items-center justify-between gap-4 text-white py-3 '>
             <div className='flex items-center justify-center py-6 text-xl text-cyan-300'>
                  <p>{details}</p>
             </div>
@@ -36,7 +36,7 @@ const TemperatureAndDetails = ({weather: {details, icon, temp, temp_min, temp_ma
             </div>
         </div>
 
-        <div className='flex flex-row items-center justify-center space-x-2 text-white text-sm py-3'>
+        <div className='flex flex-row flex-wrap items-center justify-center space-x-2 text-white text-sm py-3'>
             <UilSun/>
             <p className='font-monserrat'>Rise: <span className='font-palanquin ml-1'>{formatToLocalTime(sunrise,timezone,'hh:mm a')}</span></p>
             <p className='font-montserrat'>|</p>
