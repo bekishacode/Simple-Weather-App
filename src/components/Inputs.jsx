@@ -13,6 +13,7 @@ const Inputs = ({ setQuery, units, setUnits }) => {
   const handleSearchClick = () => {
     if (city !== '') {
       setQuery({ q: city });
+      setCity('');
     } else {
       // Inform the user about the error (empty city)
       toast.error('Please enter a city');
@@ -40,12 +41,19 @@ const Inputs = ({ setQuery, units, setUnits }) => {
     }
   };
 
+  const handleKeyPress = (event) =>{
+    if(event.key === 'Enter'){
+      handleSearchClick();
+    }
+  }
+
   return (
     <div className="flex flex-col justify-center my-6">
       <div className="flex flex-1 flex-row w-4/4 items-center justify-center space-x-4">
         <input
           value={city}
           onChange={(e) => setCity(e.currentTarget.value)}
+          onKeyPress ={handleKeyPress}
           type="text"
           placeholder="Search for a city.."
           className="text-xl font-montserrat rounded-full p-2 w-[400px] focus:outline-none capitalize placeholder:lowercase"
